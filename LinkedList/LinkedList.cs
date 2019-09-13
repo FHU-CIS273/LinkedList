@@ -24,11 +24,15 @@ namespace LinkedList
             Tail = null;
         }
 
+        // TODO
         public int Length => throw new NotImplementedException();
 
         public bool IsEmpty => Head==null;
 
         // TODO
+        /***
+         * return the item at the given index in the list.
+         */
         public int this[int index]
         {
             get
@@ -37,12 +41,14 @@ namespace LinkedList
             }
         }
 
+        /***
+         * Add item to the back of the list.
+         */
         public void Append(int item)
         {
             // create new node
             LinkedListNode newNode = new LinkedListNode(item);
 
-            // empty list
             if(IsEmpty)
             {
                 Head = newNode;
@@ -85,24 +91,37 @@ namespace LinkedList
         }
 
         // TODO
+        /***
+        * Insert newItem after first matching existingItem in list if exsitingItem is present.
+        * return true if existingItem is present; otherwise, return false.j
+        */
         public bool InsertAfter(int existingItem, int newItem)
         {
             throw new NotImplementedException();
         }
 
         // TODO
+        /***
+         * Add item to the front of the list.
+         */
         public void Prepend(int item)
         {
             throw new NotImplementedException();
         }
 
         // TODO
+        /***
+         * Remove first matching item from list (if it exists).
+         */
         public void Remove(int item)
         {
             throw new NotImplementedException();
         }
 
         // TODO
+        /***
+         * Return a new list with this list's elements in reversed order.
+         */
         public IList Reverse()
         {
             throw new NotImplementedException();
