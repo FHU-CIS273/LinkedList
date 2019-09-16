@@ -1,22 +1,23 @@
 ﻿using System;
+
 namespace LinkedList
 {
-    public class LinkedListNode
+    public class LinkedListNode<T>
     {
-        public int Data { get; set; }
-        public LinkedListNode Next { get; set; }
+        public T Data { get; set; }
+        public LinkedListNode<T> Next { get; set; }
 
-        public LinkedListNode(int data = 0, LinkedListNode next=null)
+        public LinkedListNode(T data = default(T), LinkedListNode<T> next=null)
         {
             Data = data;
             Next = next;
         }
     }
 
-    public class LinkedList: IList
+    public class LinkedList<T>: IList<T>
     {
-        public LinkedListNode Head { get; set; }
-        public LinkedListNode Tail { get; set; }
+        public LinkedListNode<T> Head { get; set; }
+        public LinkedListNode<T> Tail { get; set; }
 
         public LinkedList()
         {
@@ -33,21 +34,21 @@ namespace LinkedList
         /***
          * return the item at the given index in the list.
          */
-        public int this[int index]
+        public T this[int index]
         {
             get
             {
-                return 0;
+                return default(T);
             }
         }
 
         /***
          * Add item to the back of the list.
          */
-        public void Append(int item)
+        public void Append(T item)
         {
             // create new node
-            LinkedListNode newNode = new LinkedListNode(item);
+            LinkedListNode<T> newNode = new LinkedListNode<T>(item);
 
             if(IsEmpty)
             {
@@ -63,12 +64,12 @@ namespace LinkedList
 
         }
 
-        public bool Contains(int item)
+        public bool Contains(T item)
         {
-            LinkedListNode currentNode = Head;
+            LinkedListNode<T> currentNode = Head;
             while( currentNode != null )
             {
-                if( currentNode.Data == item)
+                if (currentNode.Data.Equals(item))
                 {
                     return true;
                 }
@@ -95,7 +96,7 @@ namespace LinkedList
         * Insert newItem after first matching existingItem in list if exsitingItem is present.
         * return true if existingItem is present; otherwise, return false.j
         */
-        public bool InsertAfter(int existingItem, int newItem)
+        public bool InsertAfter(T existingItem, T newItem)
         {
             throw new NotImplementedException();
         }
@@ -104,7 +105,7 @@ namespace LinkedList
         /***
          * Add item to the front of the list.
          */
-        public void Prepend(int item)
+        public void Prepend(T item)
         {
             throw new NotImplementedException();
         }
@@ -113,7 +114,7 @@ namespace LinkedList
         /***
          * Remove first matching item from list (if it exists).
          */
-        public void Remove(int item)
+        public void Remove(T item)
         {
             throw new NotImplementedException();
         }
@@ -122,7 +123,7 @@ namespace LinkedList
         /***
          * Return a new list with this list's elements in reversed order.
          */
-        public IList Reverse()
+        public IList<T> Reverse()
         {
             throw new NotImplementedException();
         }

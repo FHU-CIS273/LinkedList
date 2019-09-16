@@ -1,14 +1,14 @@
 ﻿using System;
 namespace LinkedList
 {
-    public interface IList
+    public interface IList<T>
     {
-        void Prepend(int item);
-        void Append(int item);
-        void Remove(int item);
-        bool InsertAfter(int existingItem, int newItem);
-        bool Contains(int item);
-        IList Reverse();
+        void Prepend(T item);
+        void Append(T item);
+        void Remove(T item);
+        bool InsertAfter(T existingItem, T newItem);
+        bool Contains(T item);
+        IList<T> Reverse();
 
         int this[int index] { get; }
 

@@ -6,7 +6,7 @@ namespace LinkedList
     {
         static void Main(string[] args)
         {
-            LinkedList linkedList = new LinkedList();
+            LinkedList<int> linkedList = new LinkedList<int>();
 
             linkedList.Append(2);
             linkedList.Append(4);
@@ -16,6 +16,17 @@ namespace LinkedList
             linkedList.Append(12);
 
             Console.WriteLine(linkedList.Contains(3));
+
+            LinkedList<string> linkedListString = new LinkedList<string>();
+
+            linkedListString.Append("Maggie");
+            linkedListString.Append("Alexis");
+            linkedListString.Append("Michael");
+
+
+            Console.WriteLine( linkedListString[2] );
+
+            Console.WriteLine(linkedListString);
         }
     }
 }
