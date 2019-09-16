@@ -10,7 +10,7 @@ namespace LinkedList
         bool Contains(T item);
         IList<T> Reverse();
 
-        int this[int index] { get; }
+        T this[int index] { get; }
 
         int Length { get; }
         bool IsEmpty { get; }
