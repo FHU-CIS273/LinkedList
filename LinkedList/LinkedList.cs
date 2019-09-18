@@ -125,7 +125,17 @@ namespace LinkedList
          */
         public IList<T> Reverse()
         {
-            throw new NotImplementedException();
+            IList<T> reversedList = new LinkedList<T>();
+
+            LinkedListNode<T> currentNode = Head;
+            while (currentNode != null)
+            {
+                reversedList.Prepend(currentNode.Data);
+                currentNode = currentNode.Next;
+            }
+
+            return reversedList;
         }
+
     }
 }
