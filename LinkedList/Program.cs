@@ -23,7 +23,9 @@ namespace LinkedList
             linkedListString.Append("Alexis");
             linkedListString.Append("Michael");
 
-
+            // get
+            var value = linkedList[2];
+             
             Console.WriteLine( linkedListString[2] );
 
             Console.WriteLine(linkedListString);

@@ -9,6 +9,10 @@ namespace LinkedList
         bool InsertAfter(T existingItem, T newItem);
         bool Contains(T item);
         IList<T> Reverse();
+        void Clear();
+
+        T First { get; }
+        T Last { get; }
 
         T this[int index] { get; }
 

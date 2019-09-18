@@ -26,9 +26,18 @@ namespace LinkedList
         }
 
         // TODO
-        public int Length => throw new NotImplementedException();
+        public int Length
+        {
+            get
+            {
+                return 0;
+            }
+        }
 
         public bool IsEmpty => Head==null;
+
+        public T First => Head == null ? default(T): Head.Data;
+        public T Last => Tail == null? default(T): Tail.Data;
 
         // TODO
         /***
@@ -137,5 +146,10 @@ namespace LinkedList
             return reversedList;
         }
 
+        public void Clear()
+        {
+            Head = null;
+            Tail = null;
+        }
     }
 }
