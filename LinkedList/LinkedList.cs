@@ -12,6 +12,11 @@ namespace LinkedList
             Data = data;
             Next = next;
         }
+
+        public override string ToString()
+        {
+            return Data.ToString();
+        }
     }
 
     public class LinkedList<T>: IList<T>
@@ -150,6 +155,28 @@ namespace LinkedList
         {
             Head = null;
             Tail = null;
+        }
+
+        public override string ToString()
+        {
+            string str = "[";
+            
+            var currentNode = Head;
+            while(currentNode != null)
+            {
+                str += currentNode;
+
+                if (currentNode != Tail)
+                {
+                    str += ", ";
+                }
+                    
+                currentNode = currentNode.Next;
+            }
+
+            str += "]";
+
+            return str;
         }
     }
 }
