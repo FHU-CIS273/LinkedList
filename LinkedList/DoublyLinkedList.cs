@@ -1,15 +1,17 @@
 ﻿using System;
-
 namespace LinkedList
 {
-    public class LinkedListNode<T>
+
+    public class DoublyLinkedListNode<T>
     {
         public T Data { get; set; }
-        public LinkedListNode<T> Next { get; set; }
+        public DoublyLinkedListNode<T> Prev { get; set; }
+        public DoublyLinkedListNode<T> Next { get; set; }
 
-        public LinkedListNode(T data = default(T), LinkedListNode<T> next=null)
+        public DoublyLinkedListNode(T data = default(T), DoublyLinkedListNode<T> prev = null, DoublyLinkedListNode<T> next = null)
         {
             Data = data;
+            Prev = prev;
             Next = next;
         }
 
@@ -18,33 +20,38 @@ namespace LinkedList
             return Data.ToString();
         }
     }
-
-    public class LinkedList<T>: IList<T>
+    public class DoublyLinkedList<T>: IList<T>
     {
-        public LinkedListNode<T> Head { get; set; }
-        public LinkedListNode<T> Tail { get; set; }
+        public DoublyLinkedListNode<T> Head { get; set; }
+        public DoublyLinkedListNode<T> Tail { get; set; }
 
-        public LinkedList()
+        public DoublyLinkedList()
         {
             Head = null;
             Tail = null;
         }
 
-        // TODO
         public int Length
         {
             get
             {
-                return 0;
+                int count = 0;
+                DoublyLinkedListNode<T> currentNode = Head;
+                while(currentNode!=null)
+                {
+                    count++;
+                    currentNode = currentNode.Next;
+                }
+
+                return count;
             }
         }
 
-        public bool IsEmpty => Head==null;
+        public bool IsEmpty => Head == null;
 
-        public T First => Head == null ? default(T): Head.Data;
-        public T Last => Tail == null? default(T): Tail.Data;
+        public T First => Head == null ? default(T) : Head.Data;
+        public T Last => Tail == null ? default(T) : Tail.Data;
 
-        // TODO
         /***
          * return the item at the given index in the list.
          */
@@ -52,7 +59,20 @@ namespace LinkedList
         {
             get
             {
+                int count = 0;
+                DoublyLinkedListNode<T> currentNode = Head;
+                while (currentNode != null)
+                {
+                    if(count == index)
+                    {
+                        return currentNode.Data;
+                    }
+                    count++;
+                    currentNode = currentNode.Next;
+                }
+
                 return default(T);
+
             }
         }
 
@@ -62,9 +82,9 @@ namespace LinkedList
         public void Append(T item)
         {
             // create new node
-            LinkedListNode<T> newNode = new LinkedListNode<T>(item);
+            DoublyLinkedListNode<T> newNode = new DoublyLinkedListNode<T>(item);
 
-            if(IsEmpty)
+            if (IsEmpty)
             {
                 Head = newNode;
                 Tail = newNode;
@@ -73,42 +93,36 @@ namespace LinkedList
             {
                 // make tail's next point to the new node
                 Tail.Next = newNode;
+                newNode.Prev = Tail;
                 Tail = newNode;
             }
+        }
 
+        public void Clear()
+        {
+            Head = null;
+            Tail = null;
         }
 
         public bool Contains(T item)
         {
-            LinkedListNode<T> currentNode = Head;
-            while( currentNode != null )
+            DoublyLinkedListNode<T> currentNode = Head;
+            while (currentNode != null)
             {
-                if (currentNode.Data.Equals(item))
+                if (item.Equals(currentNode.Data))
                 {
                     return true;
                 }
+
                 currentNode = currentNode.Next;
             }
-
-            // OR
-
-            /*for(LinkedListNode currentNode = Head;
-                currentNode != null;
-                currentNode = currentNode.Next)
-            {
-                if (currentNode.Data == item)
-                {
-                    return true;
-                }
-            }*/
-
             return false;
         }
 
         // TODO
         /***
         * Insert newItem after first matching existingItem in list if exsitingItem is present.
-        * return true if existingItem is present; otherwise, return false.j
+        * Return true if existingItem is present; otherwise, return false.j
         */
         public bool InsertAfter(T existingItem, T newItem)
         {
@@ -126,21 +140,31 @@ namespace LinkedList
 
         // TODO
         /***
-         * Remove first matching item from list (if it exists).
+         * Remove FIRST matching item from list (if it exists).
+         * Return whether or not the element was found.
          */
         public void Remove(T item)
         {
             throw new NotImplementedException();
         }
 
+        // TODO
         /***
-         * Return a new list with this list's elements in reversed order.
+         * Remove LAST matching item from list (if it exists).
+         * Return whether or not the element was found.
          */
+        public void RemoveLast(T item)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
         public IList<T> Reverse()
         {
-            IList<T> reversedList = new LinkedList<T>();
+            IList<T> reversedList = new DoublyLinkedList<T>();
 
-            LinkedListNode<T> currentNode = Head;
+            DoublyLinkedListNode<T> currentNode = Head;
             while (currentNode != null)
             {
                 reversedList.Prepend(currentNode.Data);
@@ -150,18 +174,12 @@ namespace LinkedList
             return reversedList;
         }
 
-        public void Clear()
-        {
-            Head = null;
-            Tail = null;
-        }
-
         public override string ToString()
         {
             string str = "[";
-            
+
             var currentNode = Head;
-            while(currentNode != null)
+            while (currentNode != null)
             {
                 str += currentNode;
 
@@ -169,7 +187,7 @@ namespace LinkedList
                 {
                     str += ", ";
                 }
-                    
+
                 currentNode = currentNode.Next;
             }
 
