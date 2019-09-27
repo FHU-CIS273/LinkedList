@@ -156,6 +156,11 @@ namespace LinkedList
             Tail = null;
         }
 
+        public T KthToLast(int k)
+        {
+            return default(T);
+        }
+
         public override string ToString()
         {
             string str = "[";
